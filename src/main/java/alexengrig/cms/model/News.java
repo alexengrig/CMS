@@ -23,4 +23,12 @@ public class News {
 
     private Set<Tag> tags;
 
+    public Review review(User reviewer, String status) {
+        final Review review = new Review(reviewer, status);
+
+        this.reviewers.add(review);
+
+        return review;
+    }
+
 }
