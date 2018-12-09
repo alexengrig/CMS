@@ -1,6 +1,8 @@
 package alexengrig.cms.resource;
 
 import alexengrig.cms.model.News;
+import alexengrig.cms.model.Review;
+import alexengrig.cms.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +39,17 @@ public class NewsResource {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeNews(@PathVariable("id") News newsFromDb) {
 
+    }
+
+    @GetMapping("/{id}/review/{userId}")
+    public ResponseEntity<Review> review(@PathVariable("id") News newsFromDb,
+                                         @PathVariable("userId") User userFromDb) {
+        return ResponseEntity.ok(new Review());
+    }
+
+    @GetMapping("/revised")
+    public ResponseEntity<List<News>> revisedNews() {
+        return ResponseEntity.ok(Arrays.asList(new News(), new News()));
     }
 
 }
