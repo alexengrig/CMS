@@ -17,7 +17,7 @@ public class News {
 
     private Set<User> mandatoryReviewers;
 
-    private Set<Review> reviewers;
+    private Set<Review> reviews;
 
     private Set<Category> categories;
 
@@ -26,9 +26,18 @@ public class News {
     public Review review(User reviewer, String status) {
         final Review review = new Review(reviewer, status);
 
-        this.reviewers.add(review);
+        this.reviews.add(review);
 
         return review;
+    }
+
+    public Boolean revised() {
+        return this.mandatoryReviewers
+                .stream()
+                .allMatch(reviewer -> this.reviews
+                        .stream()
+                        .anyMatch(review -> reviewer.equals(review.getReviewer())
+                                && "approved".equals(review.getStatus())));
     }
 
 }
