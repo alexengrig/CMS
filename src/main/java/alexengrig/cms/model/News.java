@@ -2,11 +2,16 @@ package alexengrig.cms.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
+@Entity
+@Table(name = "news")
 public class News {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
